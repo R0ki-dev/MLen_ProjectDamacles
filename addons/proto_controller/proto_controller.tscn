@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bhkjkaq8n5mox" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
+diffuse_mode = 3
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ucva2"]
@@ -13,7 +14,7 @@ height = 1.8
 radius = 0.4
 height = 1.8
 
-[node name="ProtoController" type="CharacterBody3D" unique_id=1907082736]
+[node name="ProtoController" type="CharacterBody3D" unique_id=1907082736 groups=["Player"]]
 script = ExtResource("1_ucva2")
 can_jump = false
 

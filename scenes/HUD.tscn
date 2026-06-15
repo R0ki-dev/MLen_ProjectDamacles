@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bul1hiq5s6pt6"]
+
+[ext_resource type="Script" uid="uid://c4nrek2v0qr4o" path="res://scripts/hud.gd" id="1_1etfg"]
+
+[sub_resource type="FontFile" id="FontFile_qpvh6"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[node name="Hud" type="CanvasLayer" unique_id=1474135496]
+script = ExtResource("1_1etfg")
+
+[node name="Label" type="Label" parent="." unique_id=1446783371]
+z_index = 99
+offset_left = 40.0
+offset_top = 563.0
+offset_right = 234.0
+offset_bottom = 617.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49019608)
+theme_override_fonts/font = SubResource("FontFile_qpvh6")
+text = "SHIFT TO SPRINT
+ESC TO PAUSE"
