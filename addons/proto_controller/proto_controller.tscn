@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://bhkjkaq8n5mox" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
+[ext_resource type="PackedScene" uid="uid://dqp3twyaloemv" path="res://assets/Tell/tell.tscn" id="2_wr06p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 diffuse_mode = 3
@@ -14,21 +15,35 @@ height = 1.8
 radius = 0.4
 height = 1.8
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_g2uji"]
+
 [node name="ProtoController" type="CharacterBody3D" unique_id=1907082736 groups=["Player"]]
 script = ExtResource("1_ucva2")
 can_jump = false
+base_speed = 3.0
+sprint_speed = 6.0
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=1474841570]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.3499999, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_iof21")
 mesh = SubResource("CapsuleMesh_ucva2")
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=784115554]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.3499999, 0)
 shape = SubResource("CapsuleShape3D_iof21")
 
-[node name="Head" type="Node3D" parent="." unique_id=1632269196]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+[node name="Tell_GLB" parent="." unique_id=130575992 instance=ExtResource("2_wr06p")]
+unique_name_in_owner = true
+transform = Transform3D(-1.5, 0, 1.3113416e-07, 0, 1.5, 0, -1.3113416e-07, 0, -1.5, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1208657420]
-transform = Transform3D(1, 0, 0, 0, 0.95386904, 0.30022305, 0, -0.30022305, 0.95386904, 1.4173408, 0.44853282, 2.5214083)
+[node name="Head" type="Node3D" parent="." unique_id=1632269196]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.1592447, 2.5500002, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Head" unique_id=1220832042]
+transform = Transform3D(1, 0, 0, 0, 0.991167, 0.1326197, 0, -0.1326197, 0.991167, 0, 0, 0)
+shape = SubResource("SphereShape3D_g2uji")
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="Head/SpringArm3D" unique_id=1208657420]
+fov = 65.0

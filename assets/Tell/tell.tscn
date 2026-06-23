@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://dqp3twyaloemv"]
+
+[ext_resource type="PackedScene" uid="uid://cl3l88lk5g0ld" path="res://assets/Tell/Tell_GLB_v2.glb" id="1_5te5q"]
+[ext_resource type="AnimationLibrary" uid="uid://cwyt1rc58rtqs" path="res://assets/Animations/Tell.res" id="2_3ix06"]
+[ext_resource type="Script" uid="uid://bjvsuhb57qpqw" path="res://assets/Tell/tell_animations_temp.gd" id="2_fuqp0"]
+[ext_resource type="Shader" uid="uid://dnkl142vmawix" path="res://assets/Hoyolike.gdshader" id="2_jpany"]
+[ext_resource type="Texture2D" uid="uid://cecn7wsh0p5lx" path="res://assets/Tell/PNG/Tell_Body.png" id="3_fuqp0"]
+[ext_resource type="Shader" uid="uid://0tbh5timxgsy" path="res://assets/toon.gdshader" id="4_kwy8k"]
+[ext_resource type="Texture2D" uid="uid://c5wrwx5rvain1" path="res://assets/Tell/PNG/Tell_Hair.png" id="5_by7do"]
+[ext_resource type="Texture2D" uid="uid://blv0vg4cwhhyb" path="res://assets/Tell/PNG/Tell_Clothes.png" id="6_c4568"]
+[ext_resource type="Texture2D" uid="uid://bplxx2xseb8tb" path="res://assets/Tell/PNG/Tell_Gear.png" id="7_nmgpg"]
+[ext_resource type="Texture2D" uid="uid://dbwkon565iotw" path="res://assets/Tell/PNG/Tell_Face.png" id="8_od7i5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebdt1"]
+render_priority = 0
+shader = ExtResource("2_jpany")
+shader_parameter/albedo_texture = ExtResource("3_fuqp0")
+shader_parameter/g_sss_max_steps = 32
+shader_parameter/g_sss_ray_max_distance = 0.03
+shader_parameter/g_sss_thickness = 0.45
+shader_parameter/g_sss_max_delta_from_original_depth = 0.005
+shader_parameter/g_sss_min_thickness = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odqvw"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ebdt1")
+shader = ExtResource("4_kwy8k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_olemh"]
+render_priority = 0
+shader = ExtResource("2_jpany")
+shader_parameter/albedo_texture = ExtResource("5_by7do")
+shader_parameter/g_sss_max_steps = 32
+shader_parameter/g_sss_ray_max_distance = 0.03
+shader_parameter/g_sss_thickness = 0.45
+shader_parameter/g_sss_max_delta_from_original_depth = 0.005
+shader_parameter/g_sss_min_thickness = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2cgab"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_olemh")
+shader = ExtResource("4_kwy8k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ewov"]
+render_priority = 0
+shader = ExtResource("2_jpany")
+shader_parameter/albedo_texture = ExtResource("6_c4568")
+shader_parameter/g_sss_max_steps = 32
+shader_parameter/g_sss_ray_max_distance = 0.03
+shader_parameter/g_sss_thickness = 0.45
+shader_parameter/g_sss_max_delta_from_original_depth = 0.005
+shader_parameter/g_sss_min_thickness = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqycb"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_7ewov")
+shader = ExtResource("4_kwy8k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lptq2"]
+render_priority = 0
+shader = ExtResource("2_jpany")
+shader_parameter/albedo_texture = ExtResource("7_nmgpg")
+shader_parameter/g_sss_max_steps = 32
+shader_parameter/g_sss_ray_max_distance = 0.03
+shader_parameter/g_sss_thickness = 0.45
+shader_parameter/g_sss_max_delta_from_original_depth = 0.005
+shader_parameter/g_sss_min_thickness = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvtbq"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_lptq2")
+shader = ExtResource("4_kwy8k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uompq"]
+render_priority = 0
+shader = ExtResource("2_jpany")
+shader_parameter/albedo_texture = ExtResource("8_od7i5")
+shader_parameter/g_sss_max_steps = 32
+shader_parameter/g_sss_ray_max_distance = 0.03
+shader_parameter/g_sss_thickness = 0.45
+shader_parameter/g_sss_max_delta_from_original_depth = 0.005
+shader_parameter/g_sss_min_thickness = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_18x0o"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_uompq")
+shader = ExtResource("4_kwy8k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ebj6"]
+render_priority = 0
+shader = ExtResource("2_jpany")
+shader_parameter/albedo_texture = ExtResource("8_od7i5")
+shader_parameter/g_sss_max_steps = 32
+shader_parameter/g_sss_ray_max_distance = 0.03
+shader_parameter/g_sss_thickness = 0.45
+shader_parameter/g_sss_max_delta_from_original_depth = 0.005
+shader_parameter/g_sss_min_thickness = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggw2l"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_1ebj6")
+shader = ExtResource("4_kwy8k")
+
+[node name="Tell_GLB_v2" unique_id=130575992 instance=ExtResource("1_5te5q")]
+script = ExtResource("2_fuqp0")
+
+[node name="Beta_Surface" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1964445395) index="0" unique_id=383890857]
+visible = false
+mesh = null
+
+[node name="Body" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1964445395) index="1" unique_id=630157798]
+blend_shapes/Shrink_Hand_L = 1.0
+blend_shapes/Shrink_Hand_R = 1.0
+blend_shapes/Shrink_Chest = 1.0
+blend_shapes/Shrink_Spine_1 = 1.0
+blend_shapes/Shrink_Spine_2 = 1.0
+surface_material_override/0 = SubResource("ShaderMaterial_odqvw")
+surface_material_override/1 = SubResource("ShaderMaterial_2cgab")
+surface_material_override/2 = SubResource("ShaderMaterial_vqycb")
+surface_material_override/3 = SubResource("ShaderMaterial_rvtbq")
+surface_material_override/4 = SubResource("ShaderMaterial_18x0o")
+surface_material_override/5 = SubResource("ShaderMaterial_ggw2l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1938959187]
+libraries/Tell = ExtResource("2_3ix06")
+autoplay = &"Tell/01_Idle"

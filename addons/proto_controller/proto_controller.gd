@@ -20,11 +20,11 @@ extends CharacterBody3D
 ## Look around rotation speed.
 @export var look_speed : float = 0.002
 ## Normal speed.
-@export var base_speed : float = 7.0
+@export var base_speed : float
 ## Speed of jump.
 @export var jump_velocity : float = 4.5
 ## How fast do we run?
-@export var sprint_speed : float = 10.0
+@export var sprint_speed : float
 ## How fast do we freefly?
 @export var freefly_speed : float = 25.0
 
@@ -53,10 +53,16 @@ var freeflying : bool = false
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
 
+## Handles movement of Tell mesh
+@onready var _Mesh: Node3D = %Tell_GLB
+var _last_movement_direction := Vector3.BACK
+@export var rotation_speed := 12.0
+
 func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
+	capture_mouse()
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -102,9 +108,9 @@ func _physics_process(delta: float) -> void:
 		move_speed = base_speed
 
 	# Apply desired movement to velocity
+	var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
+	var move_dir := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if can_move:
-		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
-		var move_dir := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if move_dir:
 			velocity.x = move_dir.x * move_speed
 			velocity.z = move_dir.z * move_speed
@@ -117,7 +123,20 @@ func _physics_process(delta: float) -> void:
 	
 	# Use velocity to actually move
 	move_and_slide()
-
+	
+	var speed = velocity.length()
+	if velocity.length() <= 0:
+		_Mesh.Idle()
+	else:
+		if velocity.length() == base_speed:
+			_Mesh.WalkForward()
+		else:
+			_Mesh.Sprint()
+	if move_dir.length() > 0.2:
+		_last_movement_direction = move_dir
+	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
+	_Mesh.global_rotation.y = target_angle
+	## lerp_angle(_Mesh.rotation.y, target_angle, rotation_speed * delta)
 
 ## Rotate us to look around.
 ## Base of controller rotates around y (left/right). Head rotates around x (up/down).

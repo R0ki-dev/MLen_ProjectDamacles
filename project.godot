@@ -65,3 +65,14 @@ Pause={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+
+[shader_globals]
+
+gradientMetallic={
+"type": "sampler2D",
+"value": "::s2tmf"
+}
+shadow_color={
+"type": "vec4",
+"value": Vector4(0, 0, 0, 0)
+}
