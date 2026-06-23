@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://8vst3830fbi8"]
+
+[ext_resource type="Texture2D" uid="uid://ixxnay1h5eot" path="res://assets/Textures/white_bricks_wall_01_4k/white_bricks_wall_01_color_4k.png" id="1_f7ipj"]
+[ext_resource type="Texture2D" uid="uid://b0dm0lflocybt" path="res://assets/Textures/white_bricks_wall_01_4k/white_bricks_wall_01_ambient_occlusion_4k.png" id="2_6ib31"]
+[ext_resource type="Texture2D" uid="uid://ci3ompq52vodp" path="res://assets/Textures/white_bricks_wall_01_4k/white_bricks_wall_01_height_4k.png" id="3_v75r8"]
+[ext_resource type="Texture2D" uid="uid://b7ep88qh1f515" path="res://assets/Textures/white_bricks_wall_01_4k/white_bricks_wall_01_normal_gl_4k.png" id="4_8lglt"]
+[ext_resource type="Texture2D" uid="uid://bu163vxtna8we" path="res://assets/Textures/white_bricks_wall_01_4k/white_bricks_wall_01_roughness_4k.png" id="5_x35n6"]
+
+[resource]
+albedo_texture = ExtResource("1_f7ipj")
+roughness_texture = ExtResource("5_x35n6")
+normal_enabled = true
+normal_scale = 1.22
+normal_texture = ExtResource("4_8lglt")
+ao_enabled = true
+ao_texture = ExtResource("2_6ib31")
+heightmap_texture = ExtResource("3_v75r8")
+uv1_scale = Vector3(3, 3, 3)
