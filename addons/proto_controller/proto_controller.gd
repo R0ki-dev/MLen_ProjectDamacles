@@ -48,6 +48,12 @@ var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
+## 0 = Idle
+## 1 = Walking
+## 2 = Sprinting
+## 3 = Attacking
+var cur_state : int = 0
+var isAttacking : bool = false
 
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
@@ -67,6 +73,10 @@ var IsPlayingIntro: bool = true
 @export var normal_fov := 45.0
 @export var sprint_fov := 65.0
 @export var fov_lerp_speed := 8.0
+
+@onready var other_animation_player: AnimationPlayer = $AnimationPlayer
+
+@export var attack_boost_speed := 16.0
 
 func _ready() -> void:
 	check_input_mappings()
@@ -115,47 +125,63 @@ func _physics_process(delta: float) -> void:
 
 	# Apply jumping
 	if can_jump:
-		if Input.is_action_just_pressed(input_jump) and is_on_floor():
+		if Input.is_action_just_pressed(input_jump) and is_on_floor() and not isAttacking:
 			velocity.y = jump_velocity
 
 	# Modify speed based on sprinting
-	if can_sprint and Input.is_action_pressed(input_sprint):
+	if not isAttacking:
+		if can_sprint and Input.is_action_pressed(input_sprint):
 			move_speed = sprint_speed
 			player_camera.fov = lerp(player_camera.fov, sprint_fov, delta * fov_lerp_speed)
-	else:
-		move_speed = base_speed
-		player_camera.fov = lerp(player_camera.fov, normal_fov, delta * fov_lerp_speed)
-
-	# Apply desired movement to velocity
-	var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
-	var move_dir := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if can_move:
-		if move_dir:
-			velocity.x = move_dir.x * move_speed
-			velocity.z = move_dir.z * move_speed
 		else:
-			velocity.x = move_toward(velocity.x, 0, move_speed)
-			velocity.z = move_toward(velocity.z, 0, move_speed)
+			move_speed = base_speed
+			player_camera.fov = lerp(player_camera.fov, normal_fov, delta * fov_lerp_speed)
 	else:
-		velocity.x = 0
-		velocity.y = 0
+		move_speed = 0.0
+		
+	# Apply desired movement to velocity
+	var input_dir := Vector2.ZERO
+	var move_dir := Vector3.ZERO
+
+	if not isAttacking:
+		input_dir = Input.get_vector(input_left, input_right, input_forward, input_back)
+		move_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+		if can_move:
+			if move_dir != Vector3.ZERO:
+				velocity.x = move_dir.x * move_speed
+				velocity.z = move_dir.z * move_speed
+			else:
+				velocity.x = move_toward(velocity.x, 0.0, move_speed * 4.0 * delta)
+				velocity.z = move_toward(velocity.z, 0.0, move_speed * 4.0 * delta)
+		else:
+			velocity.x = 0.0
+			velocity.z = 0.0
+	else:
+		velocity.x = move_toward(velocity.x, 0.0, base_speed * 4.0 * delta)
+		velocity.z = move_toward(velocity.z, 0.0, base_speed * 4.0 * delta)
 	
 	# Use velocity to actually move
 	move_and_slide()
 	
 	var speed = velocity.length()
-	if velocity.length() <= 0:
-		_Mesh.Idle()
-	else:
-		if velocity.length() > base_speed + 0.5:
-			_Mesh.Sprint()
+	if not isAttacking:
+		if velocity.length() <= 0:
+			_Mesh.Idle()
+			cur_state = 0
 		else:
-			_Mesh.WalkForward()
+			if velocity.length() > base_speed + 0.5:
+				_Mesh.Sprint()
+				cur_state = 2
+			else:
+				_Mesh.WalkForward()
+				cur_state = 1
+
 	if move_dir.length() > 0.2:
 		_last_movement_direction = move_dir
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	_Mesh.global_rotation.y = target_angle
-	lerp_angle(_Mesh.rotation.y, target_angle, rotation_speed * delta)
+	## lerp_angle(_Mesh.rotation.y, target_angle, rotation_speed * delta)
 
 ## Rotate us to look around.
 ## Base of controller rotates around y (left/right). Head rotates around x (up/down).
@@ -191,7 +217,6 @@ func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
 
-
 ## Checks if some Input Actions haven't been created.
 ## Disables functionality accordingly.
 func check_input_mappings():
@@ -216,3 +241,26 @@ func check_input_mappings():
 	if can_freefly and not InputMap.has_action(input_freefly):
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
+
+func _input(event):
+	if event.is_action_pressed("Normal Attack"):
+		NormalAttack()
+
+func NormalAttack():
+	if IsPlayingIntro or isAttacking:
+		return
+	cur_state = 3
+	isAttacking = true
+	other_animation_player.play("NormalAttack1")
+	animation_player.play("Tell/Attack1")
+	velocity.x = 0.0
+	velocity.z = 0.0
+	await get_tree().create_timer(0.8).timeout
+	var forward := -global_transform.basis.z
+	forward.y = 0.0
+	forward = forward.normalized()
+	velocity.x = forward.x * attack_boost_speed
+	velocity.z = forward.z * attack_boost_speed
+	print("Attacked")
+	await animation_player.animation_finished
+	isAttacking = false

@@ -3,8 +3,6 @@ extends Node3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var IsPlayingIntro_Listener: bool = true
 
-
-
 func SetIntroDone():
 	IsPlayingIntro_Listener = false
 
