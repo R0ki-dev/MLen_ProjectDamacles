@@ -130,7 +130,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if velocity.length() == base_speed:
 			_Mesh.WalkForward()
-		else:
+		elif velocity.length() > base_speed + 0.5:
 			_Mesh.Sprint()
 	if move_dir.length() > 0.2:
 		_last_movement_direction = move_dir
