@@ -17,6 +17,67 @@ height = 1.8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2uji"]
 
+[sub_resource type="Animation" id="Animation_wr06p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.55, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5hfox"]
+resource_name = "intro"
+length = 2.5833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.0049322, 2.5833),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0), Vector3(0, 1.8465583, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.0049322, 2.5833),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 2.355, 0), Vector3(0, 2.55, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dqce"]
+_data = {
+&"RESET": SubResource("Animation_wr06p"),
+&"intro": SubResource("Animation_5hfox")
+}
+
 [node name="ProtoController" type="CharacterBody3D" unique_id=1907082736 groups=["Player"]]
 script = ExtResource("1_ucva2")
 can_jump = false
@@ -30,20 +91,50 @@ material_override = SubResource("StandardMaterial3D_iof21")
 mesh = SubResource("CapsuleMesh_ucva2")
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=784115554]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.3499999, 0)
+transform = Transform3D(-1.5, 0, -1.3113416e-07, 0, 1.5, 0, 1.3113416e-07, 0, -1.5, 0, 1.3499999, 0)
 shape = SubResource("CapsuleShape3D_iof21")
 
 [node name="Tell_GLB" parent="." unique_id=130575992 instance=ExtResource("2_wr06p")]
 unique_name_in_owner = true
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(-1.5, 0, -1.3113416e-07, 0, 1.5, 0, 1.3113416e-07, 0, -1.5, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Tell_GLB/Armature" parent_id_path=PackedInt32Array(130575992, 1472146349) index="0" unique_id=883327271]
+bones/0/rotation = Quaternion(0.030568294, -0.19844511, -0.0014251928, 0.9796342)
+bones/1/rotation = Quaternion(-0.081391044, -8.999379e-05, 0.0039799153, 0.9966743)
+bones/2/rotation = Quaternion(-0.0024968777, -0.0010671255, 0.00900927, 0.99995583)
+bones/3/rotation = Quaternion(0.010388331, -0.0009497714, 0.009022452, 0.999905)
+bones/4/rotation = Quaternion(-0.053202327, 0.02829881, 0.018445432, 0.99801236)
+bones/5/rotation = Quaternion(-0.042635318, 0.16928402, 0.0011995257, 0.98464406)
+bones/7/rotation = Quaternion(-0.52057856, 0.537165, -0.57833207, -0.3255516)
+bones/8/rotation = Quaternion(0.51731396, -0.053850114, -0.17184961, 0.8366327)
+bones/9/rotation = Quaternion(-1.052906e-07, -1.2653687e-08, -0.11371748, 0.9935132)
+bones/10/rotation = Quaternion(0.11472212, -0.41495773, -0.061153278, 0.90050495)
+bones/31/rotation = Quaternion(0.50379443, 0.5447138, -0.590796, 0.31691998)
+bones/32/rotation = Quaternion(0.58076644, -0.10313769, 0.0924607, 0.8021995)
+bones/33/rotation = Quaternion(-1.9476548e-07, 1.5538588e-07, 0.031818252, 0.9994938)
+bones/34/rotation = Quaternion(0.042827055, 0.4274556, 0.035892572, 0.90230775)
+bones/55/rotation = Quaternion(-0.08601108, 0.056532323, 0.9943361, 0.026494958)
+bones/56/rotation = Quaternion(-0.13846019, 0.06926176, -0.008547613, 0.9879061)
+bones/57/rotation = Quaternion(0.52112055, 0.020483758, 0.043136835, 0.85214615)
+bones/58/rotation = Quaternion(0.33524188, -7.686804e-08, 2.1963355e-07, 0.9421321)
+bones/60/rotation = Quaternion(0.083111584, 0.092705935, 0.9903985, -0.060074653)
+bones/61/rotation = Quaternion(-0.15633811, -0.082490824, 0.013939981, 0.9841541)
+bones/62/rotation = Quaternion(0.49481457, -0.08375511, -0.03731717, 0.8641476)
+bones/63/rotation = Quaternion(0.33524114, -7.105428e-15, 8.838925e-15, 0.9421324)
 
 [node name="Head" type="Node3D" parent="." unique_id=1632269196]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.1592447, 2.5500002, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.55, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Head" unique_id=1220832042]
 transform = Transform3D(1, 0, 0, 0, 0.991167, 0.1326197, 0, -0.1326197, 0.991167, 0, 0, 0)
 shape = SubResource("SphereShape3D_g2uji")
-spring_length = 2.0
+spring_length = 2.5
 
 [node name="Camera3D" type="Camera3D" parent="Head/SpringArm3D" unique_id=1208657420]
-fov = 65.0
+fov = 45.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2043015791]
+libraries/ = SubResource("AnimationLibrary_6dqce")
+autoplay = &"intro"
+
+[editable path="Tell_GLB"]

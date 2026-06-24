@@ -53,16 +53,30 @@ var freeflying : bool = false
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
 
+@export_group("Character Movement")
 ## Handles movement of Tell mesh
 @onready var _Mesh: Node3D = %Tell_GLB
 var _last_movement_direction := Vector3.BACK
 @export var rotation_speed := 12.0
+@onready var animation_player: AnimationPlayer = $Tell_GLB/AnimationPlayer
+var IsPlayingIntro: bool = true
+@onready var tell_mesh: Node3D = %Tell_GLB
+
+@export var camera_fov: float = 65.0
+@onready var player_camera: Camera3D = $Head/SpringArm3D/Camera3D
+@export var normal_fov := 45.0
+@export var sprint_fov := 65.0
+@export var fov_lerp_speed := 8.0
 
 func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 	capture_mouse()
+	player_camera.fov = 20
+	await animation_player.animation_finished
+	tell_mesh.SetIntroDone()
+	IsPlayingIntro = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -83,6 +97,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			disable_freefly()
 
 func _physics_process(delta: float) -> void:
+	if IsPlayingIntro == true:
+		return
+	player_camera.fov = lerp(player_camera.fov, normal_fov, delta * 2.0)
 	# If freeflying, handle freefly and nothing else
 	if can_freefly and freeflying:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
@@ -104,8 +121,10 @@ func _physics_process(delta: float) -> void:
 	# Modify speed based on sprinting
 	if can_sprint and Input.is_action_pressed(input_sprint):
 			move_speed = sprint_speed
+			player_camera.fov = lerp(player_camera.fov, sprint_fov, delta * fov_lerp_speed)
 	else:
 		move_speed = base_speed
+		player_camera.fov = lerp(player_camera.fov, normal_fov, delta * fov_lerp_speed)
 
 	# Apply desired movement to velocity
 	var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
@@ -136,12 +155,14 @@ func _physics_process(delta: float) -> void:
 		_last_movement_direction = move_dir
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	_Mesh.global_rotation.y = target_angle
-	## lerp_angle(_Mesh.rotation.y, target_angle, rotation_speed * delta)
+	lerp_angle(_Mesh.rotation.y, target_angle, rotation_speed * delta)
 
 ## Rotate us to look around.
 ## Base of controller rotates around y (left/right). Head rotates around x (up/down).
 ## Modifies look_rotation based on rot_input, then resets basis and rotates by look_rotation.
 func rotate_look(rot_input : Vector2):
+	if IsPlayingIntro == true:
+		return
 	look_rotation.x -= rot_input.y * look_speed
 	look_rotation.x = clamp(look_rotation.x, deg_to_rad(-85), deg_to_rad(85))
 	look_rotation.y -= rot_input.x * look_speed

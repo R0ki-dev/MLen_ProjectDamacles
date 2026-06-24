@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bfdhyguofa71t" path="res://assets/GLB format/pipe-large-long.glb" id="15_jqmoj"]
 [ext_resource type="PackedScene" uid="uid://rjljnqy2qf7c" path="res://assets/GLB format/pipe-large-bend.glb" id="15_ni2ok"]
 [ext_resource type="PackedScene" uid="uid://elbt15uye40l" path="res://assets/sm_dumpster.tscn" id="18_jqmoj"]
+[ext_resource type="AudioStream" uid="uid://dtu0xotsdump2" path="res://assets/Music/Sketchbook 2024-02-07.ogg" id="19_hnsbs"]
 [ext_resource type="PackedScene" uid="uid://daqcd3ggiw3oq" path="res://assets/GLB format/structure-yellow-medium.glb" id="142_1l3l1"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ppyta"]
@@ -54,6 +55,10 @@ size = Vector3(1.938571, 1.3422165, 0.97125256)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jqmoj"]
 size = Vector3(1.3993034, 1.3422165, 1.6403813)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jqmoj"]
+streams_count = 1
+stream_0/stream = ExtResource("19_hnsbs")
 
 [node name="Test" type="Node3D" unique_id=1106088069]
 script = ExtResource("1_5bjbp")
@@ -1132,5 +1137,9 @@ transform = Transform3D(0.069171265, 0, 1.5654725, 0, 1.5670003, 0, -1.5654725, 
 
 [node name="SM_Dumpster2" parent="." unique_id=1063257867 instance=ExtResource("18_jqmoj")]
 transform = Transform3D(0.21746132, 0, 1.5518376, 0, 1.5670003, 0, -1.5518376, 0, 0.21746132, 7.744067, -0.060999524, 28.911947)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=212259625]
+stream = SubResource("AudioStreamRandomizer_jqmoj")
+autoplay = true
 
 [editable path="ArtAssets"]
