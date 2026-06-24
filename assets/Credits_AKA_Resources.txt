@@ -1,0 +1,10 @@
+Toon Shader Contact Shadows
+https://godotshaders.com/shader/toon-shader-contact-shadows/
+"Tell" 3D Model
+https://booth.pm/en/items/6344701
+Brick Wall, Concrete Floor Textures
+https://freestylized.com/
+Misc Props
+https://kenney.nl/assets
+Overcast Skybox
+https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014
