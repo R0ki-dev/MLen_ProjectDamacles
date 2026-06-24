@@ -49,6 +49,9 @@ size = Vector3(1.8847046, 2.1782227, 0.5739746)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ni2ok"]
 size = Vector3(1.8847046, 2.1782227, 0.9680176)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hnsbs"]
+size = Vector3(1.938571, 1.3422165, 0.97125256)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_jqmoj"]
 size = Vector3(1.3993034, 1.3422165, 1.6403813)
 
@@ -69,7 +72,8 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1500854358]
 environment = SubResource("Environment_8uh7m")
 
-[node name="PauseMenu" parent="." unique_id=1098502893 instance=ExtResource("5_o61fo")]
+[node name="PauseMenu" parent="." unique_id=1098502893 node_paths=PackedStringArray("Player") instance=ExtResource("5_o61fo")]
+Player = NodePath("../ProtoController")
 
 [node name="Node" type="Node" parent="." unique_id=601510569]
 
@@ -477,43 +481,43 @@ transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -9.982292, 4.4118013
 transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -9.982292, 4.4118013, 37.185127)
 
 [node name="structure-yellow-medium27" parent="Node3D/Env" unique_id=1113348165 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 26.199814)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 26.344837)
 
 [node name="structure-yellow-medium28" parent="Node3D/Env" unique_id=847734011 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 27.091496)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 27.236517)
 
 [node name="structure-yellow-medium29" parent="Node3D/Env" unique_id=1393100186 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 27.985252)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 28.130276)
 
 [node name="structure-yellow-medium40" parent="Node3D/Env" unique_id=623104749 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 28.876936)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 29.021957)
 
 [node name="structure-yellow-medium47" parent="Node3D/Env" unique_id=353031110 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 29.770767)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 29.91579)
 
 [node name="structure-yellow-medium78" parent="Node3D/Env" unique_id=1663864096 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 30.662453)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 30.807478)
 
 [node name="structure-yellow-medium79" parent="Node3D/Env" unique_id=1734032612 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 31.60426)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 31.749279)
 
 [node name="structure-yellow-medium80" parent="Node3D/Env" unique_id=127088499 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 32.49594)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 32.64096)
 
 [node name="structure-yellow-medium91" parent="Node3D/Env" unique_id=54994473 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 33.389698)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 33.53472)
 
 [node name="structure-yellow-medium92" parent="Node3D/Env" unique_id=238265214 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 34.28138)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 34.426403)
 
 [node name="structure-yellow-medium93" parent="Node3D/Env" unique_id=1582510377 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 35.175213)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 35.320236)
 
 [node name="structure-yellow-medium94" parent="Node3D/Env" unique_id=1036819640 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 36.066895)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716355, 4.4118013, 36.211918)
 
 [node name="structure-yellow-medium124" parent="Node3D/Env" unique_id=630405849 instance=ExtResource("142_1l3l1")]
-transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716354, 4.4118013, 37.029003)
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -15.716353, 4.4118013, 37.174023)
 
 [node name="structure-yellow-medium99" parent="Node3D/Env" unique_id=1499199411 instance=ExtResource("142_1l3l1")]
 transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, -24.681353, 4.4118013, 31.929924)
@@ -767,8 +771,8 @@ transform = Transform3D(-1.5766699e-07, 0, 3.607, 0, 3.607, 0, -3.607, 0, -1.576
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D/Env/door-wide-open3" unique_id=1465769183]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Env/door-wide-open3/StaticBody3D" unique_id=446059315]
-transform = Transform3D(0.99999976, 0, 7.1054274e-15, 0, 0.99999976, 0, -7.1054274e-15, 0, 0.99999976, 0.036506653, 1.1144557, 0.73251736)
-shape = SubResource("BoxShape3D_jqmoj")
+transform = Transform3D(0.99999976, 0, 7.1054274e-15, 0, 0.99999976, 0, -7.1054274e-15, 0, 0.99999976, 0.060967922, 1.1144557, 0.56677735)
+shape = SubResource("BoxShape3D_hnsbs")
 
 [node name="env" parent="Node3D/Env" unique_id=910400923 instance=ExtResource("12_jqmoj")]
 transform = Transform3D(-0.518, 0, -4.5285e-08, 0, 0.518, 0, 4.5285e-08, 0, -0.518, -1.0866442, 0.9852968, 21.900135)

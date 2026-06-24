@@ -128,10 +128,10 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() <= 0:
 		_Mesh.Idle()
 	else:
-		if velocity.length() == base_speed:
-			_Mesh.WalkForward()
-		elif velocity.length() > base_speed + 0.5:
+		if velocity.length() > base_speed + 0.5:
 			_Mesh.Sprint()
+		else:
+			_Mesh.WalkForward()
 	if move_dir.length() > 0.2:
 		_last_movement_direction = move_dir
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
