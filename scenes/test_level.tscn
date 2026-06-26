@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://rjljnqy2qf7c" path="res://assets/GLB format/pipe-large-bend.glb" id="15_ni2ok"]
 [ext_resource type="PackedScene" uid="uid://elbt15uye40l" path="res://assets/sm_dumpster.tscn" id="18_jqmoj"]
 [ext_resource type="AudioStream" uid="uid://dtu0xotsdump2" path="res://assets/Music/Sketchbook 2024-02-07.ogg" id="19_hnsbs"]
+[ext_resource type="PackedScene" uid="uid://brn27c0wdcfmk" path="res://assets/ellien THIS IS MY CUSTOM MODEL/Lil guy.glb" id="20_hnsbs"]
 [ext_resource type="PackedScene" uid="uid://daqcd3ggiw3oq" path="res://assets/GLB format/structure-yellow-medium.glb" id="142_1l3l1"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ppyta"]
@@ -1141,5 +1142,8 @@ transform = Transform3D(0.21746132, 0, 1.5518376, 0, 1.5670003, 0, -1.5518376, 0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=212259625]
 stream = SubResource("AudioStreamRandomizer_jqmoj")
 autoplay = true
+
+[node name="Lil guy" parent="." unique_id=1121827198 instance=ExtResource("20_hnsbs")]
+transform = Transform3D(-0.25881904, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881904, 10.3671465, -0.07794762, 32.839417)
 
 [editable path="ArtAssets"]
