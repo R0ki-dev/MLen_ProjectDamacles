@@ -9,17 +9,17 @@ func SetIntroDone():
 func WalkForward():
 	if IsPlayingIntro_Listener == true:
 		return
-	animation_player.play("Tell/03_Walk")
+	animation_player.play("Tell/WalkForward")
 
 func Idle():
 	if IsPlayingIntro_Listener == true:
 		return
-	animation_player.play("Tell/01_Idle")
+	animation_player.play("Tell/Standing_Idle")
 
 func Sprint():
 	if IsPlayingIntro_Listener == true:
 		return
-	animation_player.play("Tell/02_Run")
+	animation_player.play("Tell/SprintForward")
 
 func _on_ready() -> void:
-	animation_player.play("Tell/crouch_to_stand")
+	animation_player.play("Tell/Crouch_To_Stand")

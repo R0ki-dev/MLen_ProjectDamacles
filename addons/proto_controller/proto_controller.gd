@@ -129,37 +129,30 @@ func _physics_process(delta: float) -> void:
 			velocity.y = jump_velocity
 
 	# Modify speed based on sprinting
-	if not isAttacking:
-		if can_sprint and Input.is_action_pressed(input_sprint):
-			move_speed = sprint_speed
-			player_camera.fov = lerp(player_camera.fov, sprint_fov, delta * fov_lerp_speed)
-		else:
-			move_speed = base_speed
-			player_camera.fov = lerp(player_camera.fov, normal_fov, delta * fov_lerp_speed)
+	if can_sprint and Input.is_action_pressed(input_sprint):
+		move_speed = sprint_speed
+		player_camera.fov = lerp(player_camera.fov, sprint_fov, delta * fov_lerp_speed)
 	else:
-		move_speed = 0.0
+		move_speed = base_speed
+		player_camera.fov = lerp(player_camera.fov, normal_fov, delta * fov_lerp_speed)
 		
 	# Apply desired movement to velocity
 	var input_dir := Vector2.ZERO
 	var move_dir := Vector3.ZERO
 
-	if not isAttacking:
-		input_dir = Input.get_vector(input_left, input_right, input_forward, input_back)
-		move_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	input_dir = Input.get_vector(input_left, input_right, input_forward, input_back)
+	move_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-		if can_move:
-			if move_dir != Vector3.ZERO:
-				velocity.x = move_dir.x * move_speed
-				velocity.z = move_dir.z * move_speed
-			else:
-				velocity.x = move_toward(velocity.x, 0.0, move_speed * 4.0 * delta)
-				velocity.z = move_toward(velocity.z, 0.0, move_speed * 4.0 * delta)
+	if can_move:
+		if move_dir != Vector3.ZERO:
+			velocity.x = move_dir.x * move_speed
+			velocity.z = move_dir.z * move_speed
 		else:
-			velocity.x = 0.0
-			velocity.z = 0.0
+			velocity.x = move_toward(velocity.x, 0.0, move_speed * 4.0 * delta)
+			velocity.z = move_toward(velocity.z, 0.0, move_speed * 4.0 * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0.0, base_speed * 4.0 * delta)
-		velocity.z = move_toward(velocity.z, 0.0, base_speed * 4.0 * delta)
+		velocity.x = 0.0
+		velocity.z = 0.0
 	
 	# Use velocity to actually move
 	move_and_slide()
@@ -252,15 +245,7 @@ func NormalAttack():
 	cur_state = 3
 	isAttacking = true
 	other_animation_player.play("NormalAttack1")
-	animation_player.play("Tell/Attack1")
-	velocity.x = 0.0
-	velocity.z = 0.0
-	await get_tree().create_timer(0.8).timeout
-	var forward := -global_transform.basis.z
-	forward.y = 0.0
-	forward = forward.normalized()
-	velocity.x = forward.x * attack_boost_speed
-	velocity.z = forward.z * attack_boost_speed
+	animation_player.play("Tell/Spell_Attack_1")
 	print("Attacked")
 	await animation_player.animation_finished
 	isAttacking = false

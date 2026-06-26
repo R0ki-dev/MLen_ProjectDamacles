@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ckbjno4552peb"
-path="res://.godot/imported/Crouch To Stand.fbx-b7fe7911e7e4f04d62ca24ba831a8801.scn"
+uid="uid://clxx5vwqp1lhw"
+path="res://.godot/imported/Standing Walk Forward.fbx-5c888b0839cd187c902185fda575164c.scn"
 
 [deps]
 
-source_file="res://assets/Animations/Crouch To Stand.fbx"
-dest_files=["res://.godot/imported/Crouch To Stand.fbx-b7fe7911e7e4f04d62ca24ba831a8801.scn"]
+source_file="res://assets/Animations/Standing Walk Forward.fbx"
+dest_files=["res://.godot/imported/Standing Walk Forward.fbx-5c888b0839cd187c902185fda575164c.scn"]
 
 [params]
 
@@ -41,10 +41,10 @@ _subresources={
 "animations": {
 "mixamo_com": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/Animations/Crouch_To_Stand.res",
-"save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "uid://dt41qmuraklmi",
-"settings/loop_mode": 0,
+"save_to_file/fallback_path": "res://assets/Animations/WalkForward.res",
+"save_to_file/keep_custom_tracks": "",
+"save_to_file/path": "uid://dapfgi5trf6xp",
+"settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
