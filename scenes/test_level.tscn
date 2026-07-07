@@ -35,6 +35,8 @@ tonemap_mode = 3
 ssao_enabled = true
 glow_enabled = true
 glow_normalized = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0162
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uqi0"]
 albedo_texture = ExtResource("4_1lb0p")
@@ -60,6 +62,32 @@ size = Vector3(1.3993034, 1.3422165, 1.6403813)
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jqmoj"]
 streams_count = 1
 stream_0/stream = ExtResource("19_hnsbs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hnsbs"]
+emission_shape = 3
+emission_box_extents = Vector3(45, 1, 45)
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 110.24
+initial_velocity_max = 110.24
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="Curve" id="Curve_hnsbs"]
+_limits = [0.0, 0.1, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.042402826, 0.059375007), 0.3475799, 0.3475799, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rv6en"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_rv6en"]
+material = SubResource("StandardMaterial3D_rv6en")
+curve = SubResource("Curve_hnsbs")
 
 [node name="Test" type="Node3D" unique_id=1106088069]
 script = ExtResource("1_5bjbp")
@@ -1145,5 +1173,16 @@ autoplay = true
 
 [node name="Lil guy" parent="." unique_id=1121827198 instance=ExtResource("20_hnsbs")]
 transform = Transform3D(-0.25881904, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881904, 10.3671465, -0.07794762, 32.839417)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1692959746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49251556, 28.60298, 26.74449)
+amount = 100
+lifetime = 2.0
+randomness = 0.68
+visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
+trail_enabled = true
+trail_lifetime = 0.15000000000000002
+process_material = SubResource("ParticleProcessMaterial_hnsbs")
+draw_pass_1 = SubResource("RibbonTrailMesh_rv6en")
 
 [editable path="ArtAssets"]
