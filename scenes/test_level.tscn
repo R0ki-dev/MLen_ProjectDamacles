@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://kbruwhx01e1q" path="res://SceneManager.gd" id="1_5bjbp"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_by16u"]
 [ext_resource type="Texture2D" uid="uid://dexog2pwhja2v" path="res://assets/Textures/Overcast Sky/AllSky_Overcast4_Low.png" id="3_jqmoj"]
+[ext_resource type="VoxelGIData" uid="uid://r1laybyhx4a8" path="res://assets/test_level.VoxelGI_data.res" id="3_rv6en"]
 [ext_resource type="Texture2D" uid="uid://d0mtwvdbw2d6s" path="res://assets/Textures/protoyping/Dark/texture_01.png" id="4_1lb0p"]
 [ext_resource type="PackedScene" uid="uid://yd4saotpwli6" path="res://scenes/pause_menu.tscn" id="5_o61fo"]
 [ext_resource type="PackedScene" uid="uid://cnn8urxur0mjp" path="res://scenes/Key.tscn" id="6_87oic"]
@@ -33,6 +34,8 @@ background_color = Color(0.4814, 0.81257004, 0.83, 1)
 sky = SubResource("Sky_ykrsh")
 tonemap_mode = 3
 ssao_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
 glow_enabled = true
 glow_normalized = true
 volumetric_fog_enabled = true
@@ -96,9 +99,15 @@ script = ExtResource("1_5bjbp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 52.59311)
 can_sprint = true
 
+[node name="VoxelGI" type="VoxelGI" parent="." unique_id=1504547908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0072021484, 5.5386353, 21.858849)
+size = Vector3(72.92212, 13.226685, 82.30353)
+data = ExtResource("3_rv6en")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2065223403]
 transform = Transform3D(1, 0, 0, 0, 0.4848554, 0.8745943, 0, -0.8745943, 0.4848554, 0, 0, 0)
 light_energy = 0.158
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 10.0
 metadata/_edit_lock_ = true
@@ -1184,5 +1193,19 @@ trail_enabled = true
 trail_lifetime = 0.15000000000000002
 process_material = SubResource("ParticleProcessMaterial_hnsbs")
 draw_pass_1 = SubResource("RibbonTrailMesh_rv6en")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=640457544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5182495, 6.2970505, 41.79733)
+size = Vector3(73.14221, 15.087402, 30.611816)
+
+[node name="ReflectionProbe3" type="ReflectionProbe" parent="." unique_id=136526792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5182495, 6.2970505, 1.0218925)
+size = Vector3(73.14221, 15.087402, 40.264893)
+
+[node name="ReflectionProbe2" type="ReflectionProbe" parent="." unique_id=734912660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5182495, 6.2970505, 23.580116)
+size = Vector3(73.14221, 15.087402, 7.1576233)
+interior = true
+enable_shadows = true
 
 [editable path="ArtAssets"]
